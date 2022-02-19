@@ -1,0 +1,58 @@
+IIDX29pc(status="0")
+  pcdata(d_auto_scrach=pc_data.d_auto_scrach d_camera_layout=pc_data.d_camera_layout d_disp_judge=pc_data.d_disp_judge d_gauge_disp=pc_data.d_gauge_disp d_ghost_score=pc_data.d_ghost_score d_gno=pc_data.d_gno d_graph_score=pc_data.d_graph_score d_gtype=pc_data.d_gtype d_hispeed=pc_data.d_hispeed d_judge=pc_data.d_judge d_judgeAdj=pc_data.d_judgeAdj d_lane_brignt=pc_data.d_lane_brignt d_liflen=pc_data.d_liflen d_notes=pc_data.d_notes d_opstyle=pc_data.d_opstyle d_pace=pc_data.d_pace d_sdlen=pc_data.d_sdlen d_sdtype=pc_data.d_sdtype d_sorttype=pc_data.d_sorttype d_sub_gno=pc_data.d_sub_gno d_timing=pc_data.d_timing d_tsujigiri_disp=pc_data.d_tsujigiri_disp d_tune=pc_data.d_tune dach=pc_data.dach dp_opt=pc_data.dp_opt dp_opt2=pc_data.dp_opt2 dpnum=0 gpos=pc_data.gpos id=profile.iidxid idstr=profile.iidxidstr mode=pc_data.mode name=profile.name pid=profile.pid pmode=pc_data.pmode rtype=pc_data.rtype s_auto_scrach=pc_data.s_auto_scrach s_camera_layout=pc_data.s_camera_layout s_disp_judge=pc_data.s_disp_judge s_gauge_disp=pc_data.s_gauge_disp s_ghost_score=pc_data.s_ghost_score s_gno=pc_data.s_gno s_graph_score=pc_data.s_graph_score s_gtype=pc_data.s_gtype s_hispeed=pc_data.s_hispeed s_judge=pc_data.s_judge s_judgeAdj=pc_data.s_judgeAdj s_lane_brignt=pc_data.s_lane_brignt s_liflen=pc_data.s_liflen s_notes=pc_data.s_notes s_opstyle=pc_data.s_opstyle s_pace=pc_data.s_pace s_sdlen=pc_data.s_sdlen s_sdtype=pc_data.s_sdtype s_sorttype=pc_data.s_sorttype s_sub_gno=pc_data.s_sub_gno s_timing=pc_data.s_timing s_tsujigiri_disp=pc_data.s_tsujigiri_disp s_tune=pc_data.s_tune sach=pc_data.sach sp_opt=pc_data.sp_opt spnum=pc_data.spnum ngrade=pc_data.ngrade s_auto_adjust=pc_data.s_auto_adjust d_auto_adjust=pc_data.d_auto_adjust)
+  join_shop(join_cflg="1" join_id="ea" join_name=shop_data.shop_name joinflg="1")
+  grade(sgid=pc_data.sgid dgid=pc_data.dgid)
+    - for (let d of dArray)
+      g(__type="u8" __count="4") #{d[0]} #{d[1]} #{d[2]} #{d[3]}
+  deller(deller=pc_data.deller rate="0")
+  rlist
+  ir_data
+  secret_course_data
+  secret
+    flg1(__type="s64" __count="3") 0 0 0
+    flg2(__type="s64" __count="3") 0 0 0
+    flg3(__type="s64" __count="3") 0 0 0
+    flg4(__type="s64" __count="3") 0 0 0
+  achievements(last_weekly="0" pack="0" pack_comp="0" rival_crush="0" visit_flg="0" weekly_num="0")
+    trophy(__type="s64" __count="20") #{pc_data.trophy[0]} #{pc_data.trophy[1]} #{pc_data.trophy[2]} #{pc_data.trophy[3]} #{pc_data.trophy[4]} #{pc_data.trophy[5]} #{pc_data.trophy[6]} #{pc_data.trophy[7]} #{pc_data.trophy[8]} #{pc_data.trophy[9]}
+  expert_point
+  classic_course_data
+  qprodata(__type="u32" __count="5") #{settings.qpro_head} #{settings.qpro_hair} #{settings.qpro_face} #{settings.qpro_hand} #{settings.qpro_body}
+  step(dp_clear_mission_clear=pc_data.dp_clear_mission_clear dp_clear_mission_level=pc_data.dp_clear_mission_level dp_dj_mission_clear=pc_data.dp_dj_mission_clear dp_dj_mission_level=pc_data.dp_dj_mission_level dp_level=pc_data.dp_level dp_mission_point=pc_data.dp_mission_point dp_mplay=pc_data.dp_mplay enemy_damage=pc_data.enemy_damage progress=pc_data.progress sp_clear_mission_clear=pc_data.sp_clear_mission_clear sp_clear_mission_level=pc_data.sp_clear_mission_level sp_dj_mission_clear=pc_data.sp_dj_mission_clear sp_dj_mission_level=pc_data.sp_dj_mission_level sp_level=pc_data.sp_level sp_mission_point=pc_data.sp_mission_point sp_mplay=pc_data.sp_mplay tips_read_list=pc_data.tips_read_list total_point=pc_data.total_point enemy_defeat_flg=pc_data.enemy_defeat_flg mission_clear_num=pc_data.mission_clear_num)
+    is_track_ticket(__type="bool") 1
+  dj_rank(style="0")
+    rank(__type="s32" __count="15") #{pc_data.sprank[0]} #{pc_data.sprank[1]} #{pc_data.sprank[2]} #{pc_data.sprank[3]} #{pc_data.sprank[4]} #{pc_data.sprank[5]} #{pc_data.sprank[6]} #{pc_data.sprank[7]} #{pc_data.sprank[8]} #{pc_data.sprank[9]} #{pc_data.sprank[10]} #{pc_data.sprank[11]} #{pc_data.sprank[12]} #{pc_data.sprank[13]} #{pc_data.sprank[14]}
+    point(__type="s32" __count="15") #{pc_data.sppoint[0]} #{pc_data.sppoint[1]} #{pc_data.sppoint[2]} #{pc_data.sppoint[3]} #{pc_data.sppoint[4]} #{pc_data.sppoint[5]} #{pc_data.sppoint[6]} #{pc_data.sppoint[7]} #{pc_data.sppoint[8]} #{pc_data.sppoint[9]} #{pc_data.sppoint[10]} #{pc_data.sppoint[11]} #{pc_data.sppoint[12]} #{pc_data.sppoint[13]} #{pc_data.sppoint[14]}
+  dj_rank(style="1")
+    rank(__type="s32" __count="15") #{pc_data.dprank[0]} #{pc_data.dprank[1]} #{pc_data.dprank[2]} #{pc_data.dprank[3]} #{pc_data.dprank[4]} #{pc_data.dprank[5]} #{pc_data.dprank[6]} #{pc_data.dprank[7]} #{pc_data.dprank[8]} #{pc_data.dprank[9]} #{pc_data.dprank[10]} #{pc_data.dprank[11]} #{pc_data.dprank[12]} #{pc_data.dprank[13]} #{pc_data.dprank[14]}
+    point(__type="s32" __count="15") #{pc_data.dppoint[0]} #{pc_data.dppoint[1]} #{pc_data.dppoint[2]} #{pc_data.dppoint[3]} #{pc_data.dppoint[4]} #{pc_data.dppoint[5]} #{pc_data.dppoint[6]} #{pc_data.dppoint[7]} #{pc_data.dppoint[8]} #{pc_data.dppoint[9]} #{pc_data.dppoint[10]} #{pc_data.dppoint[11]} #{pc_data.dppoint[12]} #{pc_data.dppoint[13]} #{pc_data.dppoint[14]}
+  notes_radar(style="0")
+    radar_score(__type="s32" __count="6") #{pc_data.spradar[0]} #{pc_data.spradar[1]} #{pc_data.spradar[2]} #{pc_data.spradar[3]} #{pc_data.spradar[4]} #{pc_data.spradar[5]}
+  notes_radar(style="1")
+    radar_score(__type="s32" __count="6") #{pc_data.dpradar[0]} #{pc_data.dpradar[1]} #{pc_data.dpradar[2]} #{pc_data.dpradar[3]} #{pc_data.dpradar[4]} #{pc_data.dpradar[5]}
+  //-arena_data(play_num="0" play_num_dp="1" play_num_sp="1")
+  //-  achieve_data(arena_class="19" best_top_class_continuing="0" now_top_class_continuing="0" play_style="0" rating_value="0")
+  //-  achieve_data(arena_class="19" best_top_class_continuing="0" now_top_class_continuing="0" play_style="1" rating_value="0")
+  //-  cube_data(cube="0" season_id="0")
+  ea_premium_course
+  bind_eaappli
+  leggendaria_open
+  pay_per_use(item_num="99")
+  playlist(encrypt_playlist="0" index="0" play_style="0")
+  spdp_rival(flg="0")
+  enable_qr_reward
+  visitor(anum="0" pnum="0" snum="0" vs_flg="0")
+  konami_stytle(skip_flg="0")
+  arena_penalty
+  defeat(defeat_flg="0")
+  bemani_vote(music_list="-1")
+  floor_infection3(music_list="-1")
+  language_setting(language="-1")
+  leggendaria_semi_open(flg="0")
+  kac_entry_info
+    enable_kac_deller
+    disp_kac_mark
+    is_kac_entry
+    is_kac_evnet_entry
+    kac_secret_music
+  skin(__type="s16" __count="20") #{settings.frame} #{settings.turntable} #{settings.note_burst} #{settings.menu_music} #{appendsetting} #{settings.lane_cover} 0 0 #{settings.note_skin} #{settings.full_combo_splash} #{settings.note_beam} #{settings.judge_font} 0 #{settings.disable_musicpreview} #{settings.pacemaker_cover} #{settings.vefx_lock} #{settings.effect} #{settings.bomb_size} #{settings.disable_hcn_color} #{settings.first_note_preview}

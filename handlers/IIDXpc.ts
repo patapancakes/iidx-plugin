@@ -1,5 +1,5 @@
 import { settings } from "../models/settings";
-import { pc_data, IIDX27_pc_data} from "../models/pc_data";
+import { pc_data, IIDX27_pc_data,IIDX28_pc_data, IIDX29_pc_data} from "../models/pc_data";
 import { shop_data } from "../models/shop_data";
 import { profile } from "../models/profile";
 import { grade } from "../models/grade";
@@ -25,6 +25,12 @@ export const pccommon: EPR = async (info, data, send) => {
   const version = GetVersion(info);
   if (version == 27) {
     send.pugFile("pug/27pccommon.pug");
+  }
+  if (version == 28){
+    send.pugFile("pug/28pccommon.pug");
+  }
+  if (version == 29){
+    send.pugFile("pug/29pccommon.pug");
   }
 };
 
@@ -58,6 +64,12 @@ export const pctakeover: EPR = async (info, data, send) => {
 
   if (version == 27) {
     pc_data = IIDX27_pc_data;
+  }
+  if (version == 28){
+    pc_data = IIDX28_pc_data;
+  }
+  if (version == 29){
+    pc_data = IIDX29_pc_data;
   }
 
   await DB.Upsert<profile>(
@@ -101,6 +113,12 @@ export const pcreg: EPR = async (info, data, send) => {
 
   if (version == 27) {
     pc_data = IIDX27_pc_data;
+  }
+  if (version == 28){
+    pc_data = IIDX28_pc_data;
+  }
+  if (version == 29){
+    pc_data = IIDX29_pc_data;
   }
 
   await DB.Upsert<profile>(
@@ -216,6 +234,26 @@ export const pcget: EPR = async (info, data, send) => {
         dArray,
       });
     }
+    if (version == 28) {
+      send.pugFile("pug/28get.pug", {
+        settings,
+        profile,
+        appendsetting,
+        pc_data,
+        shop_data,
+        dArray,
+      });
+    }
+    if (version == 29) {
+      send.pugFile("pug/29get.pug", {
+        settings,
+        profile,
+        appendsetting,
+        pc_data,
+        shop_data,
+        dArray,
+      });
+    }
   }
 };
 
@@ -243,6 +281,7 @@ export const pcsave: EPR = async (info, data, send) => {
     dp_mission_point = pc_data.dp_mission_point,
     dp_mplay = pc_data.dp_mplay,
     enemy_damage = pc_data.enemy_damage,
+    total_point = pc_data.total_point,
     progress = pc_data.progress,
     sp_clear_mission_clear = pc_data.sp_clear_mission_clear,
     sp_clear_mission_level = pc_data.sp_clear_mission_level,
@@ -252,6 +291,8 @@ export const pcsave: EPR = async (info, data, send) => {
     sp_mission_point = pc_data.sp_mission_point,
     sp_mplay = pc_data.sp_mplay,
     tips_read_list = pc_data.tips_read_list;
+    //enemy_defeat_flg = pc_data.enemy_defeat_flg;
+    //mission_clear_num = pc_data.mission_clear_num;
 
   let d_liflen = 0,
     s_liflen = 0,
@@ -286,6 +327,7 @@ export const pcsave: EPR = async (info, data, send) => {
     dp_mission_point = parseInt($(data).attr("step").dp_mission_point);
     dp_mplay = parseInt($(data).attr("step").dp_mplay);
     enemy_damage = parseInt($(data).attr("step").enemy_damage);
+    total_point = parseInt($(data).attr("step").total_point);
     progress = parseInt($(data).attr("step").progress);
     sp_clear_mission_clear = parseInt(
       $(data).attr("step").sp_clear_mission_clear
@@ -299,6 +341,8 @@ export const pcsave: EPR = async (info, data, send) => {
     sp_mission_point = parseInt($(data).attr("step").sp_mission_point);
     sp_mplay = parseInt($(data).attr("step").sp_mplay);
     tips_read_list = parseInt($(data).attr("step").tips_read_list);
+    enemy_defeat_flg = parseInt($(data).attr("step").enemy_defeat_flg);
+    mission_clear_num = parseInt($(data).attr("step").mission_clear_num);
   }
 
   if ($(data).attr("dj_rank.1").style == "1") {
@@ -441,6 +485,222 @@ export const pcsave: EPR = async (info, data, send) => {
       }
     );
   }
+  if (version == 28) {
+    await DB.Upsert<pc_data>(
+      refid,
+      {
+        collection: "pc_data",
+        version: version,
+      },
+      {
+        $set: {
+          deller:
+            pc_data.deller + parseInt($(data).element("deller").attr().deller),
 
+          trophy: $(data)
+            .element("achievements")
+            .bigints("trophy")
+            .slice(0, 10)
+            .map(String),
+
+          sprank: sprank,
+          sppoint: sppoint,
+          dprank: dprank,
+          dppoint: dppoint,
+
+          spradar: spradar,
+          dpradar: dpradar,
+
+          dp_clear_mission_clear: dp_clear_mission_clear,
+          dp_clear_mission_level: dp_clear_mission_level,
+          dp_dj_mission_clear: dp_dj_mission_clear,
+          dp_dj_mission_level: dp_dj_mission_level,
+          dp_level: dp_level,
+          dp_mission_point: dp_mission_point,
+          dp_mplay: dp_mplay,
+          enemy_damage: enemy_damage,
+          progress: progress,
+          sp_clear_mission_clear: sp_clear_mission_clear,
+          sp_clear_mission_level: sp_clear_mission_level,
+          sp_dj_mission_clear: sp_dj_mission_clear,
+          sp_dj_mission_level: sp_dj_mission_level,
+          sp_level: sp_level,
+          sp_mission_point: sp_mission_point,
+          sp_mplay: sp_mplay,
+          tips_read_list: tips_read_list,
+
+          dpnum: dpnum,
+          d_auto_scrach: parseInt($(data).attr().d_auto_scrach),
+          d_camera_layout: parseInt($(data).attr().d_camera_layout),
+          d_disp_judge: parseInt($(data).attr().d_disp_judge),
+          d_gauge_disp: parseInt($(data).attr().d_gauge_disp),
+          d_ghost_score: parseInt($(data).attr().d_ghost_score),
+          d_gno: parseInt($(data).attr().d_gno),
+          d_graph_score: parseInt($(data).attr().d_graph_score),
+          d_gtype: parseInt($(data).attr().d_gtype),
+          d_hispeed: parseFloat($(data).attr().d_hispeed),
+          d_judge: parseInt($(data).attr().d_judge),
+          d_judgeAdj: parseInt($(data).attr().d_judgeAdj),
+          d_lane_brignt: parseInt($(data).attr().d_lane_brignt),
+          d_liflen: d_liflen,
+          d_notes: parseFloat($(data).attr().d_notes),
+          d_opstyle: parseInt($(data).attr().d_opstyle),
+          d_pace: parseInt($(data).attr().d_pace),
+          d_sdlen: parseInt($(data).attr().d_sdlen),
+          d_sdtype: parseInt($(data).attr().d_sdtype),
+          d_sorttype: parseInt($(data).attr().d_sorttype),
+          d_timing: parseInt($(data).attr().d_timing),
+          d_tsujigiri_disp: parseInt($(data).attr().d_tsujigiri_disp),
+          dach: parseInt($(data).attr().d_achi),
+          dp_opt: $(data).attr().dp_opt,
+          dp_opt2: $(data).attr().dp_opt2,
+          d_sub_gno: parseInt($(data).attr().d_sub_gno),
+
+          gpos: parseInt($(data).attr().gpos),
+          mode: parseInt($(data).attr().mode),
+          pmode: parseInt($(data).attr().pmode),
+          rtype: parseInt($(data).attr().rtype),
+          ngrade: parseInt($(data).attr().ngrade),
+
+          spnum: spnum,
+          s_auto_scrach: parseInt($(data).attr().s_auto_scrach),
+          s_camera_layout: parseInt($(data).attr().s_camera_layout),
+          s_disp_judge: parseInt($(data).attr().s_disp_judge),
+          s_gauge_disp: parseInt($(data).attr().s_gauge_disp),
+          s_ghost_score: parseInt($(data).attr().s_ghost_score),
+          s_gno: parseInt($(data).attr().s_gno),
+          s_graph_score: parseInt($(data).attr().s_graph_score),
+          s_gtype: parseInt($(data).attr().s_gtype),
+          s_hispeed: parseFloat($(data).attr().s_hispeed),
+          s_judge: parseInt($(data).attr().s_judge),
+          s_judgeAdj: parseInt($(data).attr().s_judgeAdj),
+          s_lane_brignt: parseInt($(data).attr().s_lane_brignt),
+          s_liflen: s_liflen,
+          s_notes: parseFloat($(data).attr().s_notes),
+          s_opstyle: parseInt($(data).attr().s_opstyle),
+          s_pace: parseInt($(data).attr().s_pace),
+          s_sdlen: parseInt($(data).attr().s_sdlen),
+          s_sdtype: parseInt($(data).attr().s_sdtype),
+          s_sorttype: parseInt($(data).attr().s_sorttype),
+          s_timing: parseInt($(data).attr().s_timing),
+          s_tsujigiri_disp: parseInt($(data).attr().s_tsujigiri_disp),
+          sach: parseInt($(data).attr().s_achi),
+          sp_opt: $(data).attr().sp_opt,
+          s_sub_gno: parseInt($(data).attr().s_sub_gno),
+        },
+      }
+    );
+  }
+  if (version == 29) {
+    await DB.Upsert<pc_data>(
+      refid,
+      {
+        collection: "pc_data",
+        version: version,
+      },
+      {
+        $set: {
+          deller:
+            pc_data.deller + parseInt($(data).element("deller").attr().deller),
+
+          trophy: $(data)
+            .element("achievements")
+            .bigints("trophy")
+            .slice(0, 10)
+            .map(String),
+
+          sprank: sprank,
+          sppoint: sppoint,
+          dprank: dprank,
+          dppoint: dppoint,
+
+          spradar: spradar,
+          dpradar: dpradar,
+
+          dp_clear_mission_clear: dp_clear_mission_clear,
+          dp_clear_mission_level: dp_clear_mission_level,
+          dp_dj_mission_clear: dp_dj_mission_clear,
+          dp_dj_mission_level: dp_dj_mission_level,
+          dp_level: dp_level,
+          dp_mission_point: dp_mission_point,
+          dp_mplay: dp_mplay,
+          enemy_damage: enemy_damage,
+          total_point: total_point,
+          progress: progress,
+          sp_clear_mission_clear: sp_clear_mission_clear,
+          sp_clear_mission_level: sp_clear_mission_level,
+          sp_dj_mission_clear: sp_dj_mission_clear,
+          sp_dj_mission_level: sp_dj_mission_level,
+          sp_level: sp_level,
+          sp_mission_point: sp_mission_point,
+          sp_mplay: sp_mplay,
+          tips_read_list: tips_read_list,
+          //enemy_defeat_flg: enemy_defeat_flg,
+          //mission_clear_num: mission_clear_num,
+
+          dpnum: dpnum,
+          d_auto_scrach: parseInt($(data).attr().d_auto_scrach),
+          d_camera_layout: parseInt($(data).attr().d_camera_layout),
+          d_disp_judge: parseInt($(data).attr().d_disp_judge),
+          d_gauge_disp: parseInt($(data).attr().d_gauge_disp),
+          d_ghost_score: parseInt($(data).attr().d_ghost_score),
+          d_gno: parseInt($(data).attr().d_gno),
+          d_graph_score: parseInt($(data).attr().d_graph_score),
+          d_gtype: parseInt($(data).attr().d_gtype),
+          d_hispeed: parseFloat($(data).attr().d_hispeed),
+          d_judge: parseInt($(data).attr().d_judge),
+          d_judgeAdj: parseInt($(data).attr().d_judgeAdj),
+          d_lane_brignt: parseInt($(data).attr().d_lane_brignt),
+          d_liflen: d_liflen,
+          d_notes: parseFloat($(data).attr().d_notes),
+          d_opstyle: parseInt($(data).attr().d_opstyle),
+          d_pace: parseInt($(data).attr().d_pace),
+          d_sdlen: parseInt($(data).attr().d_sdlen),
+          d_sdtype: parseInt($(data).attr().d_sdtype),
+          d_sorttype: parseInt($(data).attr().d_sorttype),
+          d_timing: parseInt($(data).attr().d_timing),
+          d_tsujigiri_disp: parseInt($(data).attr().d_tsujigiri_disp),
+          dach: parseInt($(data).attr().d_achi),
+          dp_opt: $(data).attr().dp_opt,
+          dp_opt2: $(data).attr().dp_opt2,
+          d_sub_gno: parseInt($(data).attr().d_sub_gno),
+
+          gpos: parseInt($(data).attr().gpos),
+          mode: parseInt($(data).attr().mode),
+          pmode: parseInt($(data).attr().pmode),
+          rtype: parseInt($(data).attr().rtype),
+          ngrade: parseInt($(data).attr().ngrade),
+
+          spnum: spnum,
+          s_auto_scrach: parseInt($(data).attr().s_auto_scrach),
+          s_camera_layout: parseInt($(data).attr().s_camera_layout),
+          s_disp_judge: parseInt($(data).attr().s_disp_judge),
+          s_gauge_disp: parseInt($(data).attr().s_gauge_disp),
+          s_ghost_score: parseInt($(data).attr().s_ghost_score),
+          s_gno: parseInt($(data).attr().s_gno),
+          s_graph_score: parseInt($(data).attr().s_graph_score),
+          s_gtype: parseInt($(data).attr().s_gtype),
+          s_hispeed: parseFloat($(data).attr().s_hispeed),
+          s_judge: parseInt($(data).attr().s_judge),
+          s_judgeAdj: parseInt($(data).attr().s_judgeAdj),
+          s_lane_brignt: parseInt($(data).attr().s_lane_brignt),
+          s_liflen: s_liflen,
+          s_notes: parseFloat($(data).attr().s_notes),
+          s_opstyle: parseInt($(data).attr().s_opstyle),
+          s_pace: parseInt($(data).attr().s_pace),
+          s_sdlen: parseInt($(data).attr().s_sdlen),
+          s_sdtype: parseInt($(data).attr().s_sdtype),
+          s_sorttype: parseInt($(data).attr().s_sorttype),
+          s_timing: parseInt($(data).attr().s_timing),
+          s_tsujigiri_disp: parseInt($(data).attr().s_tsujigiri_disp),
+          sach: parseInt($(data).attr().s_achi),
+          sp_opt: $(data).attr().sp_opt,
+          s_sub_gno: parseInt($(data).attr().s_sub_gno),
+          s_auto_adjust: parseInt($(data).attr().s_auto_adjust),
+          d_auto_adjust: parseInt($(data).attr().d_auto_adjust),
+        },
+      }
+    );
+  }
   send.success();
 };

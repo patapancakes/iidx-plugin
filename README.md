@@ -7,3 +7,5 @@ This is A Core IIDX Plugin.
 Supported Versions:
 
 - HEROIC VERSE
+- BISTROVER
+- CASTHOUR
