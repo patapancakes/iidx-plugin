@@ -1,0 +1,58 @@
+//DATA//
+  profile: DB.FindOne(refid, { collection: "profile" })
+  pc_data: DB.FindOne(refid, { collection: "pc_data" })
+
+-
+  const gradelist=[
+  "七級",
+  "六級",
+  "五級",
+  "四級",
+  "三級",
+  "二級",
+  "一級",
+  "初段",
+  "二段",
+  "三段",
+  "四段",
+  "五段",
+  "六段",
+  "七段",
+  "八段",
+  "九段",
+  "十段",
+  "中伝",
+  "皆伝"]
+
+div
+  .card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-account-edit
+        | Detail
+    .card-content
+      .field
+        label.label Name
+        .body
+          body #{profile.name}
+      .field
+        label.label IIDX ID
+        .body
+          body #{profile.iidxidstr}
+      .field
+        label.label SP Grade
+        .body
+        - const a = pc_data.sgid
+          if a==-1
+            body ----
+          else
+            body #{gradelist[pc_data.sgid]}
+      .field
+        label.label DP Grade
+        .body
+        - const b = pc_data.dgid
+          if b==-1
+            body ----
+          else
+            body #{gradelist[pc_data.dgid]}
