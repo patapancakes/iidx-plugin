@@ -8,4 +8,4 @@ Supported Versions:
 
 - HEROIC VERSE
 - BISTROVER
-- CASTHOUR
+- CastHour
