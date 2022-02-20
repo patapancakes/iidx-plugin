@@ -130,6 +130,7 @@ export function register() {
   R.GameCode("LDJ");
   const MultiRoute = (method: string, handler: EPR | boolean) => {
     // Helper for register multiple versions.
+    R.Route(`IIDX26${method}`, handler);
     R.Route(`IIDX27${method}`, handler);
     R.Route(`IIDX28${method}`, handler);
     R.Route(`IIDX29${method}`, handler);

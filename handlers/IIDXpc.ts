@@ -1,5 +1,5 @@
 import { settings } from "../models/settings";
-import { pc_data, IIDX27_pc_data,IIDX28_pc_data, IIDX29_pc_data} from "../models/pc_data";
+import { pc_data, IIDX26_pc_data, IIDX27_pc_data, IIDX28_pc_data, IIDX29_pc_data} from "../models/pc_data";
 import { shop_data } from "../models/shop_data";
 import { profile } from "../models/profile";
 import { grade } from "../models/grade";
@@ -23,6 +23,9 @@ import {
 
 export const pccommon: EPR = async (info, data, send) => {
   const version = GetVersion(info);
+  if (version == 26) {
+    send.pugFile("pug/26pccommon.pug");
+  }
   if (version == 27) {
     send.pugFile("pug/27pccommon.pug");
   }
@@ -62,6 +65,9 @@ export const pctakeover: EPR = async (info, data, send) => {
   const version = GetVersion(info);
   let pc_data: object;
 
+  if (version == 26) {
+    pc_data = IIDX26_pc_data;
+  }
   if (version == 27) {
     pc_data = IIDX27_pc_data;
   }
@@ -111,6 +117,9 @@ export const pcreg: EPR = async (info, data, send) => {
   const version = GetVersion(info);
   let pc_data: object;
 
+  if (version == 26) {
+    pc_data = IIDX26_pc_data;
+  }
   if (version == 27) {
     pc_data = IIDX27_pc_data;
   }

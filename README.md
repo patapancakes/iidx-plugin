@@ -6,6 +6,7 @@ This is A Core IIDX Plugin.
 
 Supported Versions:
 
+- Rootage
 - HEROIC VERSE
 - BISTROVER
 - CastHour
